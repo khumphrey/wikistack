@@ -8,7 +8,7 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var socketio = require('socket.io');
-var makesRouter = require('./routes');
+var wikiRouter = require('./routes/wiki');
 var fs = require('fs');
 
 // templating boilerplate setup
@@ -31,7 +31,7 @@ var server = app.listen(1337, function(){
 var io = socketio.listen(server);
 
 // modular routing that uses io inside it
-app.use('/', makesRouter(io));
+app.use('/wiki', wikiRouter);
 
 // the typical way to use express static middleware.
 app.use(express.static(path.join(__dirname, '/public')));
