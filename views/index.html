@@ -3,11 +3,28 @@
 {% block content %}
   <h3>Pages</h3>
   <hr>
-  <ul class="list-unstyled">
-    <!-- PLACEHOLDER LIST OF PAGES -->
-    {% for title in titles %}
-    <li> <a href="/wiki/{{title.urlTitle}}">{{title.title}}</a>
-    </li>
-    {% endfor %}
-  </ul>
+  {% if titles.length > 0 %}
+	  <ul class="list-unstyled">
+	    {% for title in titles %}
+	    <li>{{title|pageLink}} 
+	    	<!-- alternate without pageLink <a href="/wiki/{{title.urlTitle}}">{{title.title}}</a> -->
+	    </li>
+	    {% endfor %}
+	  </ul>
+	<form method="GET" action="/wiki/search">
+    <!-- make sure that the method post works with the action (url) that we want -->
+		<div>
+	      <label for="tagSearch" class="col-sm-2 control-label">Tag Search</label>
+	      <div class="col-sm-10">
+	        <input name="tagSearch" type="text" />
+	      </div>
+	      <div class="col-sm-offset-2 col-sm-10">
+	      <button type="submit" class="btn btn-primary">Search</button>
+	    	</div>
+	    </div>
+	</form>
+  {% else %}
+  	There are no pages. Why don't you <a href='/wiki/add'>add one</a>?
+  {% endif %}
+     
 {% endblock %}

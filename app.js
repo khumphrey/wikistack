@@ -4,12 +4,14 @@ var morgan = require('morgan');
 var models = require('./models');
 var bodyParser = require('body-parser');
 var swig = require('swig');
+require('./filters')(swig);
 var express = require('express');
 var app = express();
 var path = require('path');
 var socketio = require('socket.io');
 var wikiRouter = require('./routes/wiki');
 var fs = require('fs');
+module.exports = app;
 
 // templating boilerplate setup
 app.set('views', path.join(__dirname, '/views')); // where to find the views

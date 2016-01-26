@@ -1,12 +1,16 @@
 {% extends "layout.html" %}
 
 {% block content %}
-  <h3>{{title}} <small> (<a href="/wiki/{{urlTitle}}/similar">Similar</a>)</small></h3>
-  <h4>by <a href="PLACEHOLDER-AUTHOR-URL">{{author}}</a></h4>
-  <div>PLACEHOLDER TAG LIST</div>
+  <h3>{{ title }} <small> (<a href="/wiki/{{ urlTitle }}/similar">Similar</a>)</small></h3>
+  <h4>by <a href="PLACEHOLDER-AUTHOR-URL">{{ author }}</a></h4>
   <hr/>
   <div>PLACEHOLDER AUTHOR NAME WITH LINK TO AUTHOR PAGE</div>
   <div class="page-body">{{content}}</div>
+  <br> 
+  <!-- if you want you can do a for loop here -->
+  {% if tags.length > 0 %}
+  <div>Tags: {{tags}}</div>
+  {% endif %}
   <hr/>
   <a href="/wiki/{{urlTitle}}/edit" class="btn btn-primary">edit this page</a>
   <a href="/wiki/{{urlTitle}}/delete" class="btn btn-danger">delete this page</a>
